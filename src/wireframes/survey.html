@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wireframe — Survei Outlet</title>
+  <style>
+    :root { color-scheme: light; --ink:#17231f; --muted:#68766f; --line:#dce5df; --paper:#f4f7f4; --green:#14764a; --mint:#e7f3ec; --amber:#fff3d7; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.45 system-ui, sans-serif; }
+    header { position:sticky; top:0; background:white; border-bottom:1px solid var(--line); padding:14px 18px; z-index:2; }
+    .head { max-width:1080px; margin:auto; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .brand { font-weight:750; } .sync { color:var(--green); font-size:13px; }
+    main { max-width:1080px; margin:24px auto; padding:0 16px; display:grid; grid-template-columns:minmax(0, 1.5fr) minmax(260px, .8fr); gap:20px; }
+    .card { background:white; border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:0 3px 14px #173b2510; }
+    h1 { font-size:24px; margin:0 0 4px; } h2 { font-size:17px; margin:0 0 14px; }
+    .sub { color:var(--muted); margin:0 0 20px; } .steps { display:flex; gap:8px; margin:18px 0 24px; }
+    .step { flex:1; border:0; border-top:4px solid var(--line); border-radius:0; padding:8px 2px 0; font-size:12px; color:var(--muted); background:transparent; text-align:left; cursor:pointer; }
+    .step.active { border-color:var(--green); color:var(--green); font-weight:700; } .step.done { color:var(--green); }
+    label { display:block; font-size:13px; font-weight:650; margin:14px 0 6px; } input,select { width:100%; min-height:48px; padding:0 12px; border:1px solid #bac9bf; border-radius:10px; background:white; color:var(--ink); font:inherit; }
+    input[type="file"] { padding:10px; } input[type="checkbox"] { width:20px; min-height:20px; vertical-align:middle; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; } .hint { color:var(--muted); font-size:12px; margin-top:6px; }
+    .notice { background:var(--mint); padding:12px; border-radius:10px; margin:16px 0; font-size:13px; } .warn { background:var(--amber); }
+    .actions { display:flex; gap:10px; margin-top:24px; } button { min-height:48px; border:0; border-radius:10px; padding:0 18px; font:inherit; font-weight:700; cursor:pointer; }
+    button:focus-visible,input:focus-visible,select:focus-visible { outline:3px solid #77bd98; outline-offset:2px; }
+    .primary { background:var(--green); color:white; flex:1; } .secondary { background:white; border:1px solid var(--line); color:var(--ink); }
+    .stat { display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding:12px 0; } .stat:last-child { border:0; }
+    .tag { padding:4px 8px; border-radius:99px; background:var(--mint); color:var(--green); font-size:12px; }
+    .summary { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:0; } .summary div { padding:12px; background:#f7faf8; border-radius:10px; } .summary dt { color:var(--muted); font-size:12px; } .summary dd { margin:4px 0 0; font-weight:650; }
+    [hidden] { display:none !important; } nav { display:none; }
+    @media(max-width:700px) { main { display:block; margin:14px auto 84px; padding:0 12px; } .side { margin-top:14px; } .card { padding:16px; border-radius:14px; } h1 { font-size:21px; } .grid,.summary { grid-template-columns:1fr; gap:0; } .steps { gap:5px; } .step { font-size:10px; } .actions { position:sticky; bottom:8px; background:#ffffffed; padding:8px 0; } nav { display:flex; position:fixed; bottom:0; left:0; right:0; background:white; border-top:1px solid var(--line); justify-content:space-around; padding:12px 4px; font-size:12px; } }
+  </style>
+</head>
+<body>
+  <header><div class="head"><div class="brand">◉ Market Intel</div><div class="sync" id="syncState" aria-live="polite">● Demo · 0 draft</div></div></header>
+  <main>
+    <section class="card">
+      <h1>Survei outlet</h1><p class="sub">Campaign Ramadan 2027 · Outlet Contoh Bandung</p>
+      <div class="steps" aria-label="Langkah survei">
+        <button class="step active" type="button" data-step-link="0">1 · Outlet</button><button class="step" type="button" data-step-link="1">2 · Produk</button><button class="step" type="button" data-step-link="2">3 · Bukti</button><button class="step" type="button" data-step-link="3">4 · Kirim</button>
+      </div>
+
+      <section data-panel="0">
+        <h2>Informasi kunjungan</h2>
+        <label for="campaign">Campaign</label><select id="campaign"><option>Ramadan 2027</option></select>
+        <label for="outlet">Outlet yang ditugaskan</label><select id="outlet"><option>Outlet Contoh Bandung</option></select>
+        <div class="grid"><div><label for="channel">Channel</label><select id="channel"><option>Minimarket</option></select></div><div><label for="time">Waktu survei</label><input id="time" value="21 Okt 2026 · 10:32" readonly /></div></div>
+        <div class="notice">Lokasi GPS belum diambil. Koordinat bersifat opsional sampai kebijakan privasi pilot ditetapkan.</div>
+        <div class="actions"><button class="secondary" type="button" data-save>💾 Simpan draft</button><button class="primary" type="button" data-next>Lanjut ke produk →</button></div>
+      </section>
+
+      <section data-panel="1" hidden>
+        <h2>Produk yang diamati</h2>
+        <label for="product">SKU</label><select id="product"><option value="Biskuit Gery Contoh · 100 g">Biskuit Gery Contoh · 100 g</option><option value="Biskuit Kompetitor Contoh · 90 g">Biskuit Kompetitor Contoh · 90 g</option><option value="Wafer Contoh · 120 g">Wafer Contoh · 120 g</option></select>
+        <label for="availability">Ketersediaan</label><select id="availability"><option value="Tersedia">Tersedia</option><option value="Tidak tersedia">Tidak tersedia</option><option value="Tidak diketahui">Tidak diketahui</option></select>
+        <div class="grid"><div><label for="price">Harga jual (Rp)</label><input id="price" type="number" inputmode="numeric" min="0" placeholder="Contoh: 12000" /></div><div><label for="promoPrice">Harga promosi (Rp)</label><input id="promoPrice" type="number" inputmode="numeric" min="0" placeholder="Opsional" /></div></div>
+        <div class="grid"><div><label for="stock">Stok terlihat (pcs)</label><input id="stock" type="number" inputmode="numeric" min="0" placeholder="Opsional" /></div><div><label for="facing">Jumlah facing</label><input id="facing" type="number" inputmode="numeric" min="0" placeholder="Opsional" /></div></div>
+        <label for="promotion">Aktivitas promosi</label><input id="promotion" placeholder="Contoh: wobler / rak khusus" />
+        <p class="hint">Field yang tidak diketahui dibiarkan kosong, jangan isi 0 sebagai pengganti.</p>
+        <div class="actions"><button class="secondary" type="button" data-back>← Kembali</button><button class="primary" type="button" data-next>Lanjut ke bukti →</button></div>
+      </section>
+
+      <section data-panel="2" hidden>
+        <h2>Foto bukti</h2>
+        <label for="photos">Pilih foto outlet atau rak</label><input id="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple />
+        <p class="hint" id="photoHint">Maksimal 3 foto, masing-masing 10 MB. Pada wireframe ini foto hanya dipilih di browser, belum diunggah.</p>
+        <div class="notice warn">Foto akan menunggu sinkronisasi pada alur aplikasi. Jangan gunakan data pelanggan atau foto orang tanpa izin.</div>
+        <div class="actions"><button class="secondary" type="button" data-back>← Kembali</button><button class="primary" type="button" data-next>Lanjut ke ringkasan →</button></div>
+      </section>
+
+      <section data-panel="3" hidden>
+        <h2>Periksa sebelum kirim</h2>
+        <dl class="summary"><div><dt>Campaign</dt><dd id="reviewCampaign">—</dd></div><div><dt>Outlet</dt><dd id="reviewOutlet">—</dd></div><div><dt>Produk</dt><dd id="reviewProduct">—</dd></div><div><dt>Ketersediaan</dt><dd id="reviewAvailability">—</dd></div><div><dt>Harga jual</dt><dd id="reviewPrice">—</dd></div><div><dt>Harga promosi</dt><dd id="reviewPromo">—</dd></div><div><dt>Foto terpilih</dt><dd id="reviewPhotos">0</dd></div><div><dt>Petugas</dt><dd>Surveyor Demo</dd></div></dl>
+        <div class="notice">Mode wireframe: tombol kirim hanya menandai contoh sebagai terkirim di halaman ini. Belum ada server atau antrean sinkronisasi nyata.</div>
+        <div class="actions"><button class="secondary" type="button" data-back>← Kembali</button><button class="primary" id="submitSurvey" type="button">Kirim survei</button></div>
+      </section>
+      <p id="message" class="notice" role="status" aria-live="polite" hidden></p>
+    </section>
+
+    <aside class="card side"><h2>Status tugas</h2><div class="stat"><span>Petugas</span><strong>Surveyor Demo</strong></div><div class="stat"><span>Batas waktu</span><strong>23 Okt 2026</strong></div><div class="stat"><span>Draft lokal</span><span class="tag" id="draftState">Belum disimpan</span></div><div class="stat"><span>Foto menunggu unggah</span><strong id="photoCount">0</strong></div><p class="hint">Wireframe menyimpan contoh draft ke penyimpanan browser. Aplikasi nantinya memakai IndexedDB dan menunggu konfirmasi server.</p><button class="secondary" type="button" data-sync style="width:100%;margin-top:12px">Sinkronkan sekarang</button></aside>
+  </main>
+  <nav><span>⌂ Beranda</span><span>▣ Tugas</span><span>↻ Sinkron</span><span>● Akun</span></nav>
+  <script>
+    (() => {
+      const storageKey = 'market-intel-wireframe-draft';
+      const panels = [...document.querySelectorAll('[data-panel]')];
+      const steps = [...document.querySelectorAll('[data-step-link]')];
+      let current = 0;
+      const value = (id) => document.getElementById(id).value;
+      const money = (amount) => amount ? new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(Number(amount)) : '—';
+      const showMessage = (text, warn = false) => {
+        const node = document.getElementById('message');
+        node.textContent = text;
+        node.classList.toggle('warn', warn);
+        node.hidden = false;
+      };
+      const setStep = (step) => {
+        current = Math.max(0, Math.min(3, step));
+        panels.forEach((panel, index) => { panel.hidden = index !== current; });
+        steps.forEach((button, index) => {
+          button.classList.toggle('active', index === current);
+          button.classList.toggle('done', index < current);
+          button.setAttribute('aria-current', index === current ? 'step' : 'false');
+        });
+        document.getElementById('message').hidden = true;
+        if (current === 3) updateSummary();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+      const snapshot = () => ({
+        campaign: value('campaign'), outlet: value('outlet'), channel: value('channel'), product: value('product'),
+        availability: value('availability'), price: value('price'), promoPrice: value('promoPrice'),
+        stock: value('stock'), facing: value('facing'), promotion: value('promotion'), step: current,
+      });
+      const updateSummary = () => {
+        const data = snapshot();
+        document.getElementById('reviewCampaign').textContent = data.campaign;
+        document.getElementById('reviewOutlet').textContent = data.outlet;
+        document.getElementById('reviewProduct').textContent = data.product;
+        document.getElementById('reviewAvailability').textContent = data.availability;
+        document.getElementById('reviewPrice').textContent = money(data.price);
+        document.getElementById('reviewPromo').textContent = money(data.promoPrice);
+        document.getElementById('reviewPhotos').textContent = document.getElementById('photos').files.length;
+      };
+      const saveDraft = () => {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(snapshot()));
+        } catch {
+          showMessage('Browser ini memblokir penyimpanan lokal. Buka wireframe melalui server development agar draft dapat disimpan.', true);
+          return;
+        }
+        document.getElementById('draftState').textContent = 'Tersimpan di browser';
+        document.getElementById('syncState').textContent = '● Demo · 1 draft lokal';
+        showMessage('Draft wireframe tersimpan di browser ini. Belum dikirim ke server.');
+      };
+      const loadDraft = () => {
+        let saved;
+        try { saved = localStorage.getItem(storageKey); } catch { return; }
+        if (!saved) return;
+        try {
+          const data = JSON.parse(saved);
+          for (const key of ['campaign', 'outlet', 'channel', 'product', 'availability', 'price', 'promoPrice', 'stock', 'facing', 'promotion']) {
+            if (data[key] !== undefined) document.getElementById(key).value = data[key];
+          }
+          document.getElementById('draftState').textContent = 'Draft dipulihkan';
+          document.getElementById('syncState').textContent = '● Demo · 1 draft lokal';
+        } catch { localStorage.removeItem(storageKey); }
+      };
+
+      document.querySelectorAll('[data-next]').forEach((button) => button.addEventListener('click', () => setStep(current + 1)));
+      document.querySelectorAll('[data-back]').forEach((button) => button.addEventListener('click', () => setStep(current - 1)));
+      document.querySelectorAll('[data-step-link]').forEach((button) => button.addEventListener('click', () => {
+        const target = Number(button.dataset.stepLink);
+        setStep(target);
+      }));
+      document.querySelectorAll('[data-save]').forEach((button) => button.addEventListener('click', saveDraft));
+      document.querySelector('[data-sync]').addEventListener('click', () => showMessage('Belum ada backend untuk disinkronkan. Draft tetap tersimpan di browser.', true));
+      document.getElementById('photos').addEventListener('change', (event) => {
+        const files = [...event.target.files];
+        document.getElementById('photoCount').textContent = files.length;
+        const tooLarge = files.some((file) => file.size > 10 * 1024 * 1024);
+        if (files.length > 3 || tooLarge) {
+          event.target.value = '';
+          document.getElementById('photoCount').textContent = '0';
+          document.getElementById('photoHint').textContent = 'Pilih maksimal 3 foto, masing-masing tidak lebih dari 10 MB.';
+          return;
+        }
+        document.getElementById('photoHint').textContent = files.length ? `${files.length} foto dipilih (belum diunggah).` : 'Maksimal 3 foto, masing-masing 10 MB.';
+      });
+      document.getElementById('submitSurvey').addEventListener('click', () => {
+        localStorage.removeItem(storageKey);
+        document.getElementById('draftState').textContent = 'Contoh terkirim';
+        document.getElementById('syncState').textContent = '✓ Demo selesai';
+        showMessage('Contoh survei selesai. Pada aplikasi sebenarnya, data baru dihapus dari antrean setelah server mengonfirmasi.');
+      });
+      loadDraft();
+    })();
+  </script>
+</body>
+</html>
